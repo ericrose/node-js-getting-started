@@ -20,11 +20,10 @@ app.get('/', function(request, response) {
 });
 
 app.get('/db', function(request, response){
-
 	var connection = mysql.createConnection(process.env.DATABASE_URL);
 
 	connection.query('SELECT * FROM mark_test', function(err, result){
-	  console.log(result);
+	  connection.destroy();
 	  
 	  response.render('pages/db', {results: result});
 	});
